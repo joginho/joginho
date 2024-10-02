@@ -4,11 +4,16 @@ Suave na nave é um jogo na qual você e seu amigo pilotam naves espaciais pelo 
 # jogo ideal
 i nicialmente o jogo terá 4 planetas mais se fosse ideal teríamos muitos mais planetas para visitar também jogabilidade mais dinâmica com mais estratégia e puzzles 
 
-# referência:nosso jogo é inspirado em um jogo chamado guerra espacial na qual tem uma dinâmica parecida e jogabilidade também já quanto a história não há referência
+# referência:
+nosso jogo é inspirado em um jogo chamado guerra espacial na qual tem uma dinâmica parecida e jogabilidade também já quanto a história não há referência
 
-# OBJETIVOS E REGRAS: o objetivo é dominar todos os planetas e para isso será necessário que derrote todos os inimigos que tentaram defender o planeta também será necessário uma comunicação estratégica entre você e seu aliado, será disponível um modo solo caso não haja uma dupla para jogar, não ser atingido pelo inimigo para não morrer pois seus inimigos tem ataques poderosos 
+# OBJETIVOS E REGRAS:
+ o objetivo é dominar todos os planetas e para isso será necessário que derrote todos os inimigos que tentaram defender o planeta também será necessário uma comunicação estratégica entre você e seu aliado, será disponível um modo solo caso não haja uma dupla para jogar, não ser atingido pelo inimigo para não morrer pois seus inimigos tem ataques poderosos 
 
 # personagens
 taillom, garen são os irmão que irão se aventurar 
 Therisséla: a mãe doente 
 inimigos: naves do exército inimigo também terá um boss por fase 
+
+# equipe:
+Vinicius Proença e Luiz Felipe
