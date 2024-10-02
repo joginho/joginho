@@ -12,4 +12,4 @@ Personagens
 taillom, garen são os irmão que irão se aventurar 
 Therisséla: a mãe doente 
 inimigos: naves do exército inimigo também terá um boss por fase 
-oioio
+
