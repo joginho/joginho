@@ -17,3 +17,15 @@ inimigos: naves do exército inimigo também terá um boss por fase
 
 # equipe:
 Vinicius Proença e Luiz Felipe
+
+# Cenas
+## inicial
+1: conversa em mae e seus filhos contando da sua doença
+2: Os irmaõs tem uma conversa sobre o que fazer quanto a mae deles 
+3: eles decidem ir para o espaço em busca da culra da mae deles 
+
+## entre os mundos 
+1: conversa entre eles sobre o quanto esta perto de conseguir a cura e também que eles tem que ir rapido 
+
+## final 
+1: eles não conseguem chegar a tempo e a mae deles morre 
