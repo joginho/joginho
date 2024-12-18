@@ -1,0 +1,76 @@
+extends Node
+
+var index : int
+var effect : AudioEffectCapture
+var playback : AudioStreamGeneratorPlayback
+var canProcess : bool = false
+var inputTreshold = 0.05
+var receiveBuffer := PackedFloat32Array()
+
+func setup_microphone():
+	index = AudioServer.get_bus_index("Record")
+	effect = AudioServer.get_bus_effect(index, 0)
+	playback = $Retorno.get_stream_playback()
+	canProcess = true
+
+func process_mic():
+	var stereoData: PackedVector2Array = effect.get_buffer(effect.get_frames_available())
+	
+	if stereoData.size() > 0:
+		var data = PackedFloat32Array()
+		data.resize(stereoData.size())
+		var maxAmplitude = 0.0
+			
+		for i in range(stereoData.size()):
+			var value = (stereoData[i].x + stereoData[i].y) / 2
+			maxAmplitude = max(value, maxAmplitude)
+			data[i] = value
+			
+		if maxAmplitude < inputTreshold:
+			return null
+
+		data = normalize_audio(data)
+		data = apply_compression(data, 0.5, 2.0)
+		data = clamp_audio(data)
+		
+		return data
+
+func process_voice():
+	if receiveBuffer.size() <= 0 or playback.get_frames_available() <= 0:
+		return
+	var framesToProcess = min(playback.get_frames_available(), receiveBuffer.size())
+	for i in range(framesToProcess):
+		var sample = receiveBuffer[i]
+		playback.push_frame(Vector2(sample, sample))
+		
+	receiveBuffer = receiveBuffer.slice(framesToProcess)
+		
+func receive_data(data: PackedFloat32Array):
+	receiveBuffer.append_array(data)
+
+# Normalize audio to ensure consistent volume
+func normalize_audio(data: PackedFloat32Array) -> PackedFloat32Array:
+	var maxAmplitude = 0.0
+	for sample in data:
+		maxAmplitude = max(abs(sample), maxAmplitude)
+	
+	if maxAmplitude > 0:
+		for i in range(data.size()):
+			data[i] /= maxAmplitude
+	return data
+
+# Apply dynamic range compression
+func apply_compression(data: PackedFloat32Array, threshold: float, ratio: float) -> PackedFloat32Array:
+	var compressedData = PackedFloat32Array()
+	for sample in data:
+		if abs(sample) > threshold:
+			var excess = abs(sample) - threshold
+			sample = sign(sample) * (threshold + excess / ratio)
+		compressedData.append(sample)
+	return compressedData
+
+# Clamp audio to prevent clipping
+func clamp_audio(data: PackedFloat32Array) -> PackedFloat32Array:
+	for i in range(data.size()):
+		data[i] = clamp(data[i], -1.0, 1.0)
+	return data
